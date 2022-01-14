@@ -28,7 +28,7 @@ function vehicleInArray(index){
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.sendFile('./index.html');
+    res.sendFile(`${__dirname}/index.html`);
 })
 
 app.get('/vehicles', (req, res) => {
