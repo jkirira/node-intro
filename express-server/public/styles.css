@@ -1,0 +1,23 @@
+form{
+
+}
+
+.form-pair{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.label{
+    grid-column: 1;
+    align-items: flex-end;
+}
+
+.entry{
+    grid-column: 2 / span 2;
+    align-items: flex-start;
+}
+
+.label, .entry{
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+}
