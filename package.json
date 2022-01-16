@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./public/index.js"
+    "start": "node ./public/api/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
   },
   "dependencies": {}
 }
