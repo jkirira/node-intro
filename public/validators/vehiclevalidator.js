@@ -1,3 +1,5 @@
+const vehicle_model = ['name','wheels','color','capacity']
+
 function validateValue(value){
     if (value == undefined || value == null){
         return false
@@ -78,11 +80,25 @@ function capacityValidator(input){
     return {"isValid": true }
 }
 
-function validateVehicle(requestBody){
-    name_res = nameValidator(requestBody.name)
-    color_res = colorValidator(requestBody.color)
-    wheels_res = wheelsValidator(requestBody.wheels)
-    capacity_res = capacityValidator(requestBody.capacity)
+
+function validateRequest(requestBody){
+
+    if( requestBody.hasOwnProperty('id') ){
+        return { "isValid": false, "error": "cannot set property id" }
+    }
+
+    requestBodyKeys = Object.keys(requestBody)
+
+    for(i=0; i<requestBodyKeys.length; i++){
+        if( !vehicle_model.includes(requestBodyKeys[i]) ){
+            return { "isValid": false, "error": "vehicle has no property " + requestBodyKeys[i] }
+        }
+    }
+    
+    name_res = requestBody.name ? nameValidator(requestBody.name) : { "isValid" : true }
+    color_res = requestBody.color ? colorValidator(requestBody.color) : { "isValid" : true }
+    wheels_res = requestBody.wheels ? wheelsValidator(requestBody.wheels) : { "isValid" : true }
+    capacity_res = requestBody.capacity ? capacityValidator(requestBody.capacity) : { "isValid" : true }
 
     if ( !name_res.isValid ){
         return name_res
@@ -98,4 +114,4 @@ function validateVehicle(requestBody){
   
 }
 
-module.exports = {nameValidator ,colorValidator ,wheelsValidator ,capacityValidator ,validateVehicle}
+module.exports = {nameValidator ,colorValidator ,wheelsValidator ,capacityValidator ,validateRequest}
